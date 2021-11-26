@@ -1,1 +1,27 @@
+import time
+import random
+def binary_search(list,item):
+    low = 0
+    high = len(list) - 1
+    while low <= high:
+        mid = (low+high) // 2
+        guess = list[mid]
+        if guess == item:
+            return mid
+        if guess > item:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return None
+n = 1000000
+my_list = list(range(1, int(n) + 1))
+number = int(input('Введите число, которое хотите найти: '))
+start  = time.time()
+print(binary_search(my_list, number))
+print("--- %s seconds ---" % (time.time() - start))
 
+
+# 1 - 1.71661376953125e-05 seconds
+# 100 - 2.4080276489257812e-05 seconds
+# 1 000 - 2.8133392333984375e-05 seconds
+# 1 000 000 - 3.1948089599609375e-05 seconds
