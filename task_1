@@ -1,1 +1,18 @@
+import time
+def line_search(list, item):
+    for i in range(0, len(list)):
+        if list[i] == item:
+            return i
 
+
+n = 1000
+my_list = list(range(1, int(n) + 1))
+number = int(input('Введите число, которое хотите найти: '))
+start  = time.time()
+print(line_search(my_list, number))
+print("--- %s seconds ---" % (time.time() - start))
+
+# 1 - 1.9788742065429688e-05 seconds
+# 10 - 2.3365020751953125e-05 seconds
+# 1 000 - 0.00015425682067871094 seconds
+# 1 000 000 - 1.7965192794799805 seconds
