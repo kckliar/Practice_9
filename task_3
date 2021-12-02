@@ -1,27 +1,26 @@
 import time
-def binary_search_recursive(arr, elem, start=0, end=None):
-    if end is None:
-        end = len(arr) - 1
-    if start > end:
-        return False
+def binary_search(arr, elem):
+    start, end = 0, (len(arr) - 1)
+    while start <= end:
+        mid = (start + end) // 2
+        if elem == arr[mid]:
+            return mid
+        if elem < arr[mid]:
+            end = mid - 1
+        else:  # elem > arr[mid]
+            start = mid + 1
 
-    mid = (start + end) // 2
-    if elem == arr[mid]:
-        return mid
-    if elem < arr[mid]:
-        return binary_search_recursive(arr, elem, start, mid-1)
-    if elem > arr[mid]:
-        return binary_search_recursive(arr, elem, mid+1, end)
+    return False
 
 n = 1000000
 my_list = list(range(1, int(n) + 1))
 number = int(input('Введите число, которое хотите найти: '))
 start  = time.time()
-print(binary_search_recursive(my_list, number))
+print(binary_search(my_list, number))
 print("--- %s seconds ---" % (time.time() - start))
 
 
-# # 1 - 2.288818359375e-05 seconds
-# # 100 - 2.86102294921875e-05 seconds
-# # 1 000 - 4.100799560546875e-05 seconds
-# # 1 000 000 - 6.914138793945312e-05 seconds
+# 1 - 2.2172927856445312e-05 seconds
+# 100 - 1.9311904907226562e-05 seconds
+# 1 000 - 2.0503997802734375e-05 seconds
+# 1 000 000 - 3.266334533691406e-05 seconds 
